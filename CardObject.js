@@ -110,6 +110,9 @@ class CardObject {
     console.log(htmlcontent)
     this.title.innerHTML = title;
 
+    this.card.style.left = this.x +  "px";
+    this.card.style.top =  this.y  + "px";
+
   
 
     this.content.innerHTML = htmlcontent;
@@ -122,9 +125,19 @@ class CardObject {
 
     console.log( " content >> hi = " + this.content.offsetHeight);
     this.card.style.height  = (this.content.offsetHeight  + this.title.offsetHeight ) + "px" ; 
+    this.card.style.width  = (this.title.offsetWidth  ) + "px" ; 
     
     this.card.style.backgroundColor  = "yellow"; 
     console.log("setCardContent  OK ")
+  }
+
+  setWidth(width){
+    this.card.style.width = width + "px";
+  }
+  
+  setContentBgColor(bgcolor){
+    this.card.style.backgroundColor  = bgcolor; 
+    console.log("setContentBgColor  OK ")
   }
 
   appendCardContent(htmlContent){
@@ -136,46 +149,84 @@ class CardObject {
     this.setCardContent(title,this.content.innerHTML  + htmlContent + "<br>\n" );
   }  
 // ==================================
+ 
+
+  register() {
+
+    // Get the card and title elements
+    const card = document.querySelector(this.card_selector);
+    const title = document.querySelector(this.card_selector + ' > div.card-title');
+    const content = document.querySelector(this.card_selector + ' > div.card-content');
+
+    // Create a new this instance
+
+    // Set the card and title elements
+    this.card = card;
+    this.title = title;
+    this.content = content;
+
+    // Add event listeners for mouse events
+    title.addEventListener('mousedown', this.onMouseDown.bind(this));
+    document.addEventListener('mousemove', this.onMouseMove.bind(this));
+    document.addEventListener('mouseup', this.onMouseUp.bind(this));
+
+    this.setCardContent(
+      'title-new <br>(' + this.card_selector + ')',
+      'This is OK  <br> by thitipong  js ES6 <br>  test 1234445fs <br>stest assssss<br>sssssss<br>sssssss<br>sssssssssssss',
+    );
+
+    // this.appendCardContentNL('');
+    // this.appendCardContentNL('AAA');
+    // this.appendCardContent('BBB');
+    // this.appendCardContent(' CCC ');
+    // for (let i = 0; i < 10; i++) {
+    //   this.appendCardContentNL(' Add Row  ' + i);
+    // }
+
+    console.log('OK2 Register Finished');
+  }
+ 
+
+// ==================================
 }
 // ==================================
+// END Class  
+// ==================================
 
-function register(){ 
-    console.log("OK1 Register");
-    // console.log("OK111");
+console.log('OK1 Register');
+// console.log("OK111");
 
-    const cardObject = new CardObject(50, 50 , "#container");
-    
-    // Get the card and title elements
-    const card = document.querySelector(cardObject.card_selector);
-    const title = document.querySelector( cardObject.card_selector  + ' > div.card-title');
-    const content = document.querySelector(cardObject.card_selector  + ' > div.card-content');
-    
-    // Create a new CardObject instance
+const cardObject = new CardObject(50, 50, '#container');
 
-    
-    // Set the card and title elements
-    cardObject.card = card;
-    cardObject.title = title;
-    cardObject.content = content;
-    
-    // Add event listeners for mouse events
-    title.addEventListener('mousedown', cardObject.onMouseDown.bind(cardObject));
-    document.addEventListener('mousemove', cardObject.onMouseMove.bind(cardObject));
-    document.addEventListener('mouseup', cardObject.onMouseUp.bind(cardObject));
-    
-    cardObject.setCardContent("title-new <br>(" + cardObject.card_selector + ")" , "This is OK  <br> test 1234445fs <br>stest assssss<br>sssssss<br>sssssss<br>sssssssssssss" );
-    
-    cardObject.appendCardContentNL("")
-    cardObject.appendCardContentNL("AAA")
-    cardObject.appendCardContent("BBB")
-    cardObject.appendCardContent(" CCC ")
-    for(let i = 0 ; i < 10 ; i++){
-        cardObject.appendCardContentNL(" Add Row  " + i )
-    }
-    
-    console.log("OK2 Register Finished");
+cardObject.register();
+cardObject.appendCardContentNL('');
+cardObject.appendCardContentNL('AAA');
+cardObject.appendCardContent('BBB');
+cardObject.appendCardContent(' CCC ');
+cardObject.appendCardContent('<ul>');
+for (let i = 0; i <  4; i++) {
+  cardObject.appendCardContentNL(' <li> ' + i + "  data row</li>");
 }
-register();
+cardObject.appendCardContent('</ul>');
+cardObject.setContentBgColor("lightyellow");
+
+
+for( let i = 0 ; i < 10 ; i ++ ){ 
+  
+  const x   = Math.floor(Math.random() * 800); 
+  const y   = Math.floor(Math.random() * 600); 
+  const cardObject2 = new CardObject(x , y, '#container');
+  cardObject2.register();  
+}
+
+const cardObject2 = new CardObject(200 , 250, '#container');
+cardObject2.register();  
+cardObject2.appendCardContentNL("");
+let url= "<a href='https://github.com/tps2015gh/taskcardjs'>https://github.com/tps2015gh/taskcardjs</a>";
+cardObject2.appendCardContentNL( url ) ;
+cardObject2.appendCardContentNL("");
+cardObject2.setWidth(300);
+cardObject2.setContentBgColor("lightgreen");
 
 // ==================================
   
