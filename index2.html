@@ -1,0 +1,102 @@
+
+<html>
+    <head>
+      <style>
+        .card {
+          background-color: lightsilver;
+          color: black;
+          border: 1px solid gray;
+          box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+          width: 200px;
+          height: 100px;
+          position: absolute;
+        }
+        .card-title {
+          cursor: move;
+          background-color: gray;
+          color: white;
+          padding: 5px;
+          font-weight: bold;
+        }
+        .card-content {
+          padding: 10px;
+        }
+      </style>
+    </head>
+    <body>
+      <div id="container">
+        <div class="card" style="left: 50px; top: 50px;">
+          <div class="card-title">Title</div>
+          <div class="card-content">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </div>
+        </div>
+      </div>
+      
+      <script>
+        // Get the card and title elements
+        var card = document.querySelector('.card');
+        var title = document.querySelector('.card-title');
+  
+        // Set the initial position of the card
+        var x = 50;
+        var y = 50;
+  
+        // Set the initial position of the mouse
+        var mouseX = 0;
+        var mouseY = 0;
+  
+        // Set the initial position of the title
+        var titleX = 0;
+        var titleY = 0;
+  
+        // Set the flag for dragging
+        var isDragging = false;
+  
+        // Add event listeners for mouse events
+        title.addEventListener('mousedown', onMouseDown);
+        document.addEventListener('mousemove', onMouseMove);
+        document.addEventListener('mouseup', onMouseUp);
+ 
+
+          // Handle the mousedown event
+      function onMouseDown(e) {
+        console.log("Mouse Down")
+        // Set the flag to true
+        isDragging = true;
+
+        // Save the mouse position
+         // Save the mouse position
+         mouseX = e.clientX;
+        mouseY = e.clientY;
+
+        // Save the title position
+        titleX = title.offsetLeft;
+        titleY = title.offsetTop;
+      }
+      
+      // Handle the mousemove event
+      function onMouseMove(e) {
+        if (isDragging) {
+          // Calculate the new position of the card
+          x += e.clientX - mouseX;
+          y += e.clientY - mouseY;
+
+          // Update the position of the card
+          card.style.left = x + 'px';
+          card.style.top = y + 'px';
+
+          // Update the mouse position
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+        }
+      }
+
+      // Handle the mouseup event
+      function onMouseUp(e) {
+        // Set the flag to false
+        isDragging = false;
+      }
+    </script>
+  </body>
+</html>

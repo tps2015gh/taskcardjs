@@ -1,0 +1,7 @@
+
+html display small card of text , color  light silver , text black  , border , have shadow  
+have title that can drag move position 
+
+======================
+
+when drag title move card to other position , and permanent change position display 
