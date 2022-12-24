@@ -5,3 +5,9 @@ have title that can drag move position
 ======================
 
 when drag title move card to other position , and permanent change position display 
+
+
+/**
+ * Copyright (c) 2022 Thitipong Samranvanich
+ * @file  
+ */

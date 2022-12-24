@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2022 Thitipong Samranvanich
+ * @file CardObject.js 
+ */
+
 class CardObject {
 
     constructor(x, y ,root_selector ) {
